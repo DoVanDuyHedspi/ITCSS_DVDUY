@@ -48,7 +48,7 @@ Bạn có thể kiểm tra tại [Chisel](https://github.com/xfiveco/generator-c
 Ở đây có một vài suy nghĩ dựa trên kinh nghiệm của tôi với các dự án ITCSS:
  ##### Ít suy nghĩ về đặt tên hay tạo mẫu vị trí 
 Bản chất tự tiên của ITCSS, đặc biệt khi kết hợp với  [ quy ước đặt tên BEMIT](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) cho phép bạn tập trung vài việc giải quyết các thách thức front-end thay vì nghĩ về tên gọi hay mẫu của các vị trí. Đây, file main.css của Xfive.co có dạng thế này:
-```
+```css
 @import "settings.colors";
 @import "settings.global";
 
