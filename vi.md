@@ -6,8 +6,8 @@ Năm ngoái khi tôi bắt đầu kế hoặc thiết kế lại [HEROized](http
 
 Thời gian đó [CSS Modules](http://www.sitepoint.com/understanding-css-modules-methodology/) mới đang trong giai đoạn đầu và còn mới mẻ và tôi luôn cho rằng sự tương đồng trong cấu trúc [Atomic Design](http://patternlab.io/) dễ nhân tạo hơn. Sau đó tôi bắt gặp ITCSS của [Roberts’s](https://csswizardry.com/) phát hành tháng 6 2015 của [net magazine](https://www.creativebloq.com/web-design/manage-large-scale-web-projects-new-css-architecture-itcss-41514731) và ngay lập tức thích nó bởi sự đơn giản, thực tế trong cách nó tiếp cận css
  ### ITCSS là gì?
- ITCSS viêt tắt của Inverted Triangle CSS và nó giúp bạn tổ chức file css trong dự sao cho có thể **giải quyết** những vấn đề đặc biệt của css (không phải lúc nào cũng dễ giải quyết) giống như là  **global namespace, cascade and selectors specificity.**.
-ITCSS có thể sử dụng cùng với bộ tiền sử lý hoặc không cùng và nó tương thích với CSS phương pháp luận css như BEM, SMACSS hoặc OOCSS.
+ ITCSS viêt tắt của Inverted Triangle CSS và nó giúp bạn tổ chức file css trong dự án sao cho có thể **giải quyết** những vấn đề đặc biệt của css (không phải lúc nào cũng dễ giải quyết) giống như là  **global namespace, cascade and selectors specificity.**.
+~~ITCSS có thể sử dụng cùng với bộ tiền sử lý hoặc không cùng~~ (ITCSS can be used with preprocessors or without them - *ITCSS có thể được dùng mà không bắt buộc cần có các bộ tiền xử lý*) và nó tương thích với CSS phương pháp luận css như BEM, SMACSS hoặc OOCSS.
 Một trong những nguyên tắc chính của ITCSS đó là nó chia css codebase thành nhiều phần nhỏ (được gọi là các lớp), có dạng hình tam giác ngược:
 ![inverted triangle](https://other.media/wp-content/uploads/2017/01/itcss_2.png)
 Các lớp như sau:
@@ -17,7 +17,8 @@ Các lớp như sau:
  - Elements(phần tử) (- tạo mầu cho các phần tử HTML cơ bản (như H1, A, v.v). Chúng sẽ mặc định theo trình duyệt nhưng bạn có thể định nghĩa lại tại đây.
  - Objects(đối tượng) - bộ chọn dựa trên lớp, định nghĩa các thiết kế chưa được trang trí, ví dụ như đối tượng media từ OOCSS. 
  - Components(thành phần) - các thành phần UI cụ thể. Đây là nơi phần lớn công việc diễn ra và UI của chúng tôi thường bao gồm đối tượng và thành phần.
- - Utilities(Tiện ích) - các tiện ích và các lớp trợ giúp với khả năng ghi đè bất cứ thứ gì đi trước trong tam giác, ví dụ lớp hỗ trợ hide.
+ - Utilities(Tiện ích) - ~~các tiện ích và các lớp trợ giúp với khả năng ghi đè bất cứ thứ gì đi trước trong tam giác~~ (utilities and helper classes with ability to override anything which goes before in the triangle - *chứa các helper class và các ulitiles class có thể ghi đè bởi bất kỳ thành thành phần nào được khai báo trước trong tam giác*), ví dụ lớp hỗ trợ hide.
+
 "Tam giác" cũng cho thấy các style được trình bày bằng các bộ chọn được sắp xếp trong kết quả CSS: từ các kiểu chung chung đến các kiểu rõ ràng, từ các bộ chọn có độ đặc hiệu thấp đến những kiểu cụ thể hơn (nhưng vẫn không quá cụ thể, không cho phép ID) và từ ảnh hưởng rộng đến ảnh hưởng ít.
 ![inverted triangle](https://other.media/wp-content/uploads/2017/01/itcss_1.png)
 Tổ chức CSS như vậy giúp bạn tránh được những xung đột đặc hiệu và được đại diện bởi [một biểu đồ đặc hiệu lành mạnh ](https://jonassebastianohlsson.com/specificity-graph/)
@@ -43,11 +44,13 @@ Tôi đã sử dụng ITCSS trong 4 dự án trước đây (bao gồm Xfive.co)
     - [Biểu đồ đặc trưng](https://csswizardry.com/2014/10/the-specificity-graph/)
  - [inuitcss](https://github.com/inuitcss/inuitcss) - OOCSS framework dựa trên ITCSS, cải tiến một số chức năng và khái niệm.
  - [Quy ước đặt tên BEMIT](http://www.jamesturneronline.net/blog/bemit-naming-convention.html)
-Bạn có thể kiểm tra tại [Chisel](https://github.com/xfiveco/generator-chisel/), bộ sinh Yeoman cho các dự án front-end và WordPress của chúng tôi, nó có hỗ trợ ITCSS.
+~~Bạn có thể kiểm tra tại [Chisel](https://github.com/xfiveco/generator-chisel/), bộ sinh Yeoman cho các dự án front-end và WordPress của chúng tôi, nó có hỗ trợ ITCSS.~~
+(You can also check out Chisel, our Yeoman generator for front-end and WordPress projects, which supports ITCSS. - *Bạn có thể theo dõi[Chisel](https://github.com/xfiveco/generator-chisel/), nhà sáng lập ra Yeoman cho các dự án front-end của WordPress, nó có hỗ trợ ITCSS.*)
  ### Kinh nghiệm
-Ở đây có một vài suy nghĩ dựa trên kinh nghiệm của tôi với các dự án ITCSS:
+~~Ở đây có một vài suy nghĩ dựa trên kinh nghiệm của tôi với các dự án ITCSS:~~
+(Here are a few thoughts based on my experience with ITCSS projects: - *Đây là một vài cảm nhân dựa trên trải nghiệm của tôi về project ITCSS*)
  ##### Ít suy nghĩ về đặt tên hay tạo mẫu vị trí 
-Bản chất tự tiên của ITCSS, đặc biệt khi kết hợp với  [ quy ước đặt tên BEMIT](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) cho phép bạn tập trung vài việc giải quyết các thách thức front-end thay vì nghĩ về tên gọi hay mẫu của các vị trí. Đây, file main.css của Xfive.co có dạng thế này:
+~~Bản chất tự tiên của ITCSS~~ (ITCSS’s prescriptive nature - *ITCSS có tính nhất quán*)), đặc biệt khi kết hợp với  [ quy ước đặt tên BEMIT](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) cho phép bạn tập trung vài việc giải quyết các thách thức front-end thay vì nghĩ về tên gọi hay mẫu của các vị trí. Đây, file main.css của Xfive.co có dạng thế này:
 ```css
 @import "settings.colors";
 @import "settings.global";
@@ -126,12 +129,12 @@ Bản chất tự tiên của ITCSS, đặc biệt khi kết hợp với  [ quy 
 Chú ý: Chúng ta sử dụng [các thư mục tách rời cho mỗi lớp](https://github.com/xfiveco/generator-chisel/tree/master/generators/app/templates/styles/itcss) tự động tải các định dạng thêm mới bằng  [Chisel](https://github.com/xfiveco/generator-chisel/)
  ##### Đối tượng sử dụng lại cho sự phát triển nhanh
  Các đối tượng của ITCSS là ứng cử viên hàng đầu cho việc xây dựng thư viện các thành phần dùng lại được nhằm phát triển front-end nhanh hơn. Các thành phần UI bao gồm các đối tượng chung và các thành phần đặc thù của dự án. Ví dụ, innuitcss là một framework dựa trên ITCSS,chứa  [một nhóm đối tượng](https://github.com/inuitcss/inuitcss/tree/develop/objects) bnhưng chủ  [một thành phần mẫu](https://github.com/inuitcss/inuitcss/tree/develop/components)
- ##### Hoạt hình
- Tôi khuyên bạn nên định nghĩa các hoạt ảnh chung như là các đối tượng, ví dụ như @keyframes o-fade-in trong file _objects.animations.scss
+ ##### ~~Hoạt hình~~ (Animations - *Hiệu ứng*)
+ Tôi khuyên bạn nên định nghĩa các ~~hoạt ảnh~~ (animations - *hiệu ứng*) chung như là các đối tượng, ví dụ như @keyframes o-fade-in trong file _objects.animations.scss
 
- Các thành phần đặc thù cho hoạt ảnh nên được định nghĩa trong các file thành phần tương ứng, ví dụ @keyframes c-hero-scale trong file _components.hero.scss.
+ Các thành phần đặc thù cho ~~hoạt ảnh~~ (animations - *hiệu ứng*) nên được định nghĩa trong các file thành phần tương ứng, ví dụ @keyframes c-hero-scale trong file _components.hero.scss.
  ##### Sự linh hoạt
- ITCSS rất linh hoạt trong luồng công việc cũng như các công cụ của bạn. Một trong nhưng lập trình viên của chúng tôi đã bày tỏ sự quan tâm về việc ITCSS nó đã đầy đủ như thế nào. Nhưng sự thật là điều đó hoàn toàn phụ thuộc vào bạn - ITCSS không yêu cầu bạn phải có tất cả các lớp (chỉ cái nào cần thôi)
+ ITCSS rất linh hoạt trong luồng công việc cũng như các công cụ của bạn. Một trong nhưng lập trình viên của chúng tôi đã bày tỏ sự quan tâm về việc ~~ITCSS nó đã đầy đủ như thế nào~~ ( how much boilerplate ITCSS comes with - *có bao nhiêu bản mẫu đi kèm với ITCSS.*). Nhưng sự thật là điều đó hoàn toàn phụ thuộc vào bạn - ITCSS không yêu cầu bạn phải có tất cả các lớp (chỉ cái nào cần thôi)
 
  Do vậy trong 1 cài đặt tối thiểu, bạn có thể chỉ cần 1 vài thành phần với những phần tử mẫu mặc định theo trình duyệt. Tất nhiên là điều này không thiết thực chút nào - một vài cài đặt, đặt lại và/ hay chuẩn hóa CSS được sử dụng bởi hầu hết mọi người vì những lợi ích của chúng.
  ##### Critical CSS 
